@@ -46,20 +46,6 @@ function fecharAPopupMensagem() {
   }
 }
 
-document.querySelectorAll(".link-social").forEach((link) => {
-  link.addEventListener("click", (evento) => {
-    evento.preventDefault();
-
-    const idioma = obterIdiomaAtual();
-    const mensagem =
-      link.getAttribute(`data-popup-${idioma}`) ||
-      link.getAttribute("data-popup-pt") ||
-      "";
-
-    abrirPopupMensagem(mensagem);
-  });
-});
-
 if (fecharPopupMensagem) {
   fecharPopupMensagem.addEventListener("click", fecharAPopupMensagem);
 }
@@ -78,18 +64,18 @@ const traducoes = {
     contactar_titulo_pagina: "Contactar",
     contactar_titulo: "Entrar em contacto",
     contactar_intro:
-      "Nesta página podes adicionar os teus links reais de WhatsApp, Facebook e Instagram. Enquanto isso, ao clicar em cada botão, aparece uma mensagem com a informação correspondente.",
+      "Nesta página podes adicionar os teus links reais de WhatsApp, Facebook e Instagram.",
     contacto_whatsapp: "WhatsApp",
     contacto_whatsapp_texto:
-      "Aqui ficará o teu link directo para conversa no WhatsApp.",
+      "Fala comigo directamente pelo WhatsApp.",
     botao_abrir_whatsapp: "Abrir WhatsApp",
     contacto_facebook: "Facebook",
     contacto_facebook_texto:
-      "Aqui ficará o teu link do perfil ou página de Facebook.",
+      "Visita o meu perfil de Facebook.",
     botao_abrir_facebook: "Abrir Facebook",
     contacto_instagram: "Instagram",
     contacto_instagram_texto:
-      "Aqui ficará o teu link oficial do Instagram.",
+      "Visita o meu perfil oficial do Instagram.",
     botao_abrir_instagram: "Abrir Instagram",
     contacto_email: "Email",
     contacto_email_texto:
@@ -111,18 +97,18 @@ const traducoes = {
     contactar_titulo_pagina: "Contact",
     contactar_titulo: "Get in touch",
     contactar_intro:
-      "On this page you can add your real WhatsApp, Facebook and Instagram links. For now, when someone clicks each button, a message with the corresponding information appears.",
+      "On this page you can access my real WhatsApp, Facebook and Instagram links.",
     contacto_whatsapp: "WhatsApp",
     contacto_whatsapp_texto:
-      "Your direct WhatsApp chat link will appear here.",
+      "Talk to me directly on WhatsApp.",
     botao_abrir_whatsapp: "Open WhatsApp",
     contacto_facebook: "Facebook",
     contacto_facebook_texto:
-      "Your Facebook profile or page link will appear here.",
+      "Visit my Facebook profile.",
     botao_abrir_facebook: "Open Facebook",
     contacto_instagram: "Instagram",
     contacto_instagram_texto:
-      "Your official Instagram link will appear here.",
+      "Visit my official Instagram profile.",
     botao_abrir_instagram: "Open Instagram",
     contacto_email: "Email",
     contacto_email_texto:
@@ -144,18 +130,18 @@ const traducoes = {
     contactar_titulo_pagina: "Contactar",
     contactar_titulo: "Ponerse en contacto",
     contactar_intro:
-      "En esta página puedes añadir tus enlaces reales de WhatsApp, Facebook e Instagram. Mientras tanto, al hacer clic en cada botón, aparece un mensaje con la información correspondiente.",
+      "En esta página puedes acceder a mis enlaces reales de WhatsApp, Facebook e Instagram.",
     contacto_whatsapp: "WhatsApp",
     contacto_whatsapp_texto:
-      "Aquí aparecerá tu enlace directo para conversar por WhatsApp.",
+      "Habla conmigo directamente por WhatsApp.",
     botao_abrir_whatsapp: "Abrir WhatsApp",
     contacto_facebook: "Facebook",
     contacto_facebook_texto:
-      "Aquí aparecerá el enlace de tu perfil o página de Facebook.",
+      "Visita mi perfil de Facebook.",
     botao_abrir_facebook: "Abrir Facebook",
     contacto_instagram: "Instagram",
     contacto_instagram_texto:
-      "Aquí aparecerá tu enlace oficial de Instagram.",
+      "Visita mi perfil oficial de Instagram.",
     botao_abrir_instagram: "Abrir Instagram",
     contacto_email: "Email",
     contacto_email_texto:
