@@ -51,7 +51,7 @@ a {
 }
 
 .cabecalho-topo {
-  position:relative;
+  position: sticky;
   top: 0;
   z-index: 60;
   display: flex;
@@ -521,3 +521,13 @@ body.modo-escuro .cabecalho-topo {
   }
 }
 
+
+.secao-contactar-final {
+  width: min(1150px, 92vw);
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.botao-contactar-final {
+  margin-top: 18px;
+}
