@@ -51,7 +51,7 @@ a {
 }
 
 .cabecalho-topo {
-  position: sticky;
+  position:relative;
   top: 0;
   z-index: 60;
   display: flex;
