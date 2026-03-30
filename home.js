@@ -566,7 +566,7 @@ document.addEventListener("DOMContentLoaded", () => {
       rodape_descricao:
         "Portafolio personal centrado en participación juvenil, movilización social y desarrollo comunitario.",
       rodape_contacto:
-        "Contacto: +258 861470922 | Email: mussagifernandoomuge2@gmail.com"
+        
     }
   };
 
