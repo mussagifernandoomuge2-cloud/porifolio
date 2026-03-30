@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Mussagi Fernando Omuge</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+  <div class="sobreposicao" id="sobreposicao"></div>
+
+  <header class="cabecalho-topo">
+    <div class="marca-topo">
+      <div class="icone-marca">MFO</div>
+      <span data-i18n="marca">Portfólio Pessoal</span>
+    </div>
+
+    <div class="acoes-topo">
+      <select class="seletor-idioma" id="seletorIdioma" aria-label="Selecionar idioma">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+
+      <button class="botao-topo" id="botaoTema" aria-label="Alternar tema">🌙</button>
+      <button class="botao-topo" id="botaoMenu" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <aside class="menu-lateral" id="menuLateral">
+    <div class="topo-menu">
+      <span data-i18n="menu_titulo">Menu</span>
+      <button class="botao-topo" id="fecharMenu">✕</button>
+    </div>
+
+    <a href="#inicio" class="link-menu" data-i18n="menu_inicio">Início</a>
+    <a href="#sobre" class="link-menu" data-i18n="menu_sobre">Sobre mim</a>
+    <a href="#competencias" class="link-menu" data-i18n="menu_competencias">Competências</a>
+    <a href="#percurso" class="link-menu" data-i18n="menu_percurso">Percurso</a>
+    <a href="#experiencias" class="link-menu" data-i18n="menu_experiencias">Experiências</a>
+    <a href="#fotos" class="link-menu" data-i18n="menu_fotos">Fotos e actividades</a>
+    <a href="contactar.html" class="link-menu" data-i18n="menu_contactar">Contactar</a>
+  </aside>
+
+  <section class="hero" id="inicio">
+    <article class="cartao cartao-perfil">
+      <img src="perfil2.jpg" alt="Foto de Mussagi Fernando Omuge" class="foto-perfil imagem-ampliavel">
+      <h1>Mussagi Fernando Omuge</h1>
+      <p class="texto-suave" data-i18n="hero_texto">
+        Nasci no dia 18 de Junho de 2008 em Pemba, Província de Cabo Delgado, filho de Fernando Omuge e Arminda de Fátima Arcanjo.
+        Sou uma pessoa dedicada, curiosa e comprometida com o desenvolvimento comunitário, a participação juvenil e a promoção dos direitos dos adolescentes e jovens.
+      </p>
+      <a href="contactar.html" class="botao-principal" data-i18n="botao_contactar">Contactar</a>
+    </article>
+
+    <article class="cartao cartao-destaque">
+      <span class="rotulo" data-i18n="rotulo_hero">Impacto social e participação juvenil</span>
+      <h2 data-i18n="titulo_hero">Experiências, projectos e contribuição comunitária</h2>
+      <p class="texto-suave" data-i18n="texto_hero_destaque">
+        Este portfólio apresenta o meu percurso académico, comunitário e social, reunindo experiências em palestras, debates, participação juvenil,
+        mobilização social, projectos comunitários, seminários, workshops, actividades de mentoria e acções de consciencialização em diferentes bairros e instituições.
+      </p>
+
+      <div class="lista-chips">
+        <span class="chip" data-i18n="chip_1">Palestras e debates</span>
+        <span class="chip" data-i18n="chip_2">Participação juvenil</span>
+        <span class="chip" data-i18n="chip_3">Mobilização social</span>
+        <span class="chip" data-i18n="chip_4">Projectos comunitários</span>
+        <span class="chip" data-i18n="chip_5">Seminários e workshops</span>
+        <span class="chip" data-i18n="chip_6">Mentoria juvenil</span>
+        <span class="chip" data-i18n="chip_7">Direitos humanos</span>
+        <span class="chip" data-i18n="chip_8">Educação comunitária</span>
+      </div>
+    </article>
+  </section>
+
+  <main class="conteudo-principal">
+
+    <section class="cartao secao" id="sobre">
+      <h2 data-i18n="sobre_titulo">Sobre mim</h2>
+      <p class="introducao-secao" data-i18n="sobre_intro">
+        Aqui estão reunidas informações pessoais, formação, competências, experiências, participação social e áreas em que posso contribuir.
+      </p>
+
+      <div class="grade-dupla">
+        <div class="caixa-interna">
+          <h3 data-i18n="biografia_titulo">Biografia</h3>
+          <p class="texto-suave" data-i18n="biografia_texto">
+            Sou Mussagi Fernando Omuge, natural de Pemba. Concluí a 10ª classe em 2023 e a 12ª classe em 2025 na Escola Secundária de Pemba.
+            Ao longo dos anos, participei em diferentes iniciativas comunitárias e juvenis ligadas aos direitos da criança, sensibilização social, cidadania,
+            debates escolares, palestras, jornadas de limpeza, actividades desportivas, workshops e projectos de mentoria. Tenho interesse por tecnologia,
+            educação comunitária, liderança juvenil e desenvolvimento social.
+          </p>
+        </div>
+
+        <div class="caixa-interna">
+          <h3 data-i18n="info_titulo">Informações principais</h3>
+          <ul class="lista-info">
+            <li><strong data-i18n="nome_label">Nome:</strong> Mussagi Fernando Omuge</li>
+            <li><strong data-i18n="nascimento_label">Data de nascimento:</strong> <span data-i18n="nascimento_valor">18 de Junho de 2008</span></li>
+            <li><strong data-i18n="naturalidade_label">Naturalidade:</strong> Pemba, Cabo Delgado</li>
+            <li><strong data-i18n="disponibilidade_label">Disponibilidade:</strong> <span data-i18n="disponibilidade_valor">Formação, voluntariado e oportunidades de emprego</span></li>
+            <li><strong>Email:</strong> mussagifernandoomuge2@gmail.com</li>
+            <li><strong data-i18n="telefone_label">Telefone:</strong> +258 861470922</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cartao secao" id="competencias">
+      <h2 data-i18n="competencias_titulo">Competências e línguas faladas</h2>
+      <p class="introducao-secao" data-i18n="competencias_intro">
+        Nesta parte estão destacadas as competências adquiridas ao longo da minha formação e participação em actividades sociais, educativas e comunitárias.
+      </p>
+
+      <div class="grade-dupla">
+        <div class="caixa-interna">
+          <h3 data-i18n="competencias_lista_titulo">Competências</h3>
+          <ul class="lista-info">
+            <li data-i18n="comp_1">Comunicação interpessoal</li>
+            <li data-i18n="comp_2">Participação e liderança juvenil</li>
+            <li data-i18n="comp_3">Mobilização social e comunitária</li>
+            <li data-i18n="comp_4">Organização de palestras e debates</li>
+            <li data-i18n="comp_5">Mentoria e acompanhamento juvenil</li>
+            <li data-i18n="comp_6">Trabalho em equipa</li>
+            <li data-i18n="comp_7">Noções de informática básica</li>
+            <li data-i18n="comp_8">Noções de programação web</li>
+            <li data-i18n="comp_9">Capacidade de adaptação e aprendizagem</li>
+            <li data-i18n="comp_10">Condução de actividades de consciencialização</li>
+          </ul>
+        </div>
+
+        <div class="caixa-interna">
+          <h3 data-i18n="linguas_titulo">Línguas faladas</h3>
+          <ul class="lista-info">
+            <li><strong data-i18n="portugues_label">Português:</strong> <span data-i18n="portugues_valor">Escrita: Bom | Fala: Bom | Leitura: Bom</span></li>
+            <li><strong data-i18n="ingles_label">Inglês:</strong> <span data-i18n="ingles_valor"></span></li>
+            <li><strong data-i18n="traducao_label">Emakua:</strong> <span data-i18n="traducao_valor"></span></li>
+
+        
+
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cartao secao" id="fotos">
+      <h2 data-i18n="fotos_titulo">Fotos e actividades</h2>
+      <p class="introducao-secao" data-i18n="fotos_intro">
+        As descrições ficam visíveis e apenas as fotos abrem em popup. Cada bloco mantém um tamanho mais equilibrado para não ficar muito alto no ecrã.
+      </p>
+
+      <div class="pilha-actividades">
+        <article class="bloco-actividade">
+          <div class="trilho-fotos">
+            <img src="P.I1.JPG" alt="Actividade do Parlamento Infantil 1" class="foto-actividade imagem-ampliavel">
+            <img src="P.I4.jpg" alt="Actividade do Parlamento Infantil 2" class="foto-actividade imagem-ampliavel">
+            <img src="P.I3.jpg" alt="Actividade do Parlamento Infantil 3" class="foto-actividade imagem-ampliavel">
+          </div>
+          <div class="descricao-actividade">
+            <h3 data-i18n="foto1_titulo">Parlamento Infantil</h3>
+            <p data-i18n="foto1_texto">
+              Participação em seminários, workshops, debates, encontros formativos e actividades de sensibilização ligadas à defesa dos direitos da criança e da participação activa dos jovens.
+            </p>
+          </div>
+        </article>
+
+        <article class="bloco-actividade">
+          <div class="trilho-fotos">
+            <img src="PPAJ1.jpg" alt="Plataforma de Participação 1" class="foto-actividade imagem-ampliavel">
+            <img src="PPAJ5.jpg" alt="Plataforma de Participação 2" class="foto-actividade imagem-ampliavel">
+            <img src="A&J1.jpg" alt="Plataforma de Participação 3" class="foto-actividade imagem-ampliavel">
+          </div>
+          <div class="descricao-actividade">
+            <h3 data-i18n="foto2_titulo">Plataforma de Participação de Adolescentes e Jovens</h3>
+            <p data-i18n="foto2_texto">
+              Participação em campanhas, debates, mobilização comunitária e actividades juvenis destinadas ao fortalecimento da voz dos adolescentes e jovens.
+            </p>
+          </div>
+        </article>
+
+        <article class="bloco-actividade">
+          <div class="trilho-fotos">
+            <img src="UKh2.jpg" alt="Associação Ukhavihera 1" class="foto-actividade imagem-ampliavel">
+            <img src="UKh3.jpg" alt="Associação Ukhavihera 2" class="foto-actividade imagem-ampliavel">
+            <img src="UKh.jpg" alt="Associação Ukhavihera 3" class="foto-actividade imagem-ampliavel">
+          </div>
+          <div class="descricao-actividade">
+            <h3 data-i18n="foto3_titulo">Clube de Direitos Humanos – Associação Ukhavihera</h3>
+            <p data-i18n="foto3_texto">
+              Participação em jornadas de limpeza, palestras de conscientização, actividades desportivas, workshops e seminários ligados à cidadania e direitos humanos.
+            </p>
+          </div>
+        </article>
+
+        <article class="bloco-actividade">
+          <div class="trilho-fotos">
+            <img src="kutenga.jpg" alt="Mentoria Kutenga 1" class="foto-actividade imagem-ampliavel">
+            <img src="kutenga1.jpg" alt="Mentoria Kutenga 2" class="foto-actividade imagem-ampliavel">
+            <img src="kutenga2.jpg" alt="Mentoria Kutenga 3" class="foto-actividade imagem-ampliavel">
+          </div>
+          <div class="descricao-actividade">
+            <h3 data-i18n="foto4_titulo">Mentoria em diferentes bairros</h3>
+            <p data-i18n="foto4_texto">
+              Sessões de mentoria sobre uniões prematuras, apoio a adolescentes e jovens, diálogo comunitário e actividades de educação social em vários bairros.
+            </p>
+          </div>
+        </article>
+
+        <article class="bloco-actividade">
+          <div class="trilho-fotos">
+            <img src="acele2.jpg" alt="Acelerador Juvenil 1" class="foto-actividade imagem-ampliavel">
+            <img src="acele1.jpg" alt="Acelerador Juvenil 2" class="foto-actividade imagem-ampliavel">
+            <img src="acele3.jpg" alt="Acelerador Juvenil 3" class="foto-actividade imagem-ampliavel">
+          </div>
+          <div class="descricao-actividade">
+            <h3 data-i18n="foto5_titulo">Acelerador Juvenil</h3>
+            <p data-i18n="foto5_texto">
+              Participação em actividades de comunicação, rádio, programação, criatividade, trabalho em equipa e desenvolvimento de soluções com impacto comunitário.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="popup-imagem" id="popupImagem">
+    <div class="caixa-popup-imagem">
+      <button class="fechar-popup" id="fecharPopupImagem">✕</button>
+      <img src="perfil1.jpg" alt="Imagem ampliada" id="imagemPopup">
+    </div>
+  </div>
+
+
+
+
+        
+  <footer class="rodape">
+    <p><strong>Mussagi Fernando Omuge</strong></p>
+    <p data-i18n="rodape_texto">Portfólio pessoal com foco em participação juvenil, mobilização social e desenvolvimento comunitário.</p>
+    <p><span data-i18n="rodape_contacto">Contacto:</span> +258 861470922 | Email: mussagifernandoomuge2@gmail.com</p>
+    <p>© 2026</p>
+  </footer>
+
+  <script src="home.js"></script>
+</body>
+</html>

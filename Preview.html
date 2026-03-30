@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio Pessoal | Mussagi Fernando Omuge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    :root {
+      --bg: #f4f8ff;
+      --surface: #ffffff;
+      --surface-2: #eef4ff;
+      --text: #112033;
+      --muted: #5b6b7d;
+      --primary: #1565d8;
+      --primary-2: #0f4fb0;
+      --border: #d9e5f5;
+      --shadow: 0 12px 30px rgba(21, 101, 216, 0.12);
+      --footer: #0f1e33;
+    }
+
+    body.dark {
+      --bg: #0c1420;
+      --surface: #121d2b;
+      --surface-2: #162334;
+      --text: #e8f0ff;
+      --muted: #a7b6cc;
+      --primary: #5da2ff;
+      --primary-2: #87bbff;
+      --border: #24344b;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      --footer: #08111d;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .25s ease, color .25s ease;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, select { font: inherit; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    body.dark .topbar { background: rgba(12,20,32,.92); }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn, .contact-btn, .chip {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 14px;
+      transition: .2s ease;
+    }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+    .icon-btn:hover, .contact-btn:hover, .chip:hover { transform: translateY(-1px); }
+
+    .lang-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 10px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .lang-select {
+      border: none;
+      background: transparent;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .drawer {
+      position: fixed;
+      inset: 0 0 0 auto;
+      width: min(320px, 86vw);
+      background: var(--surface);
+      box-shadow: -10px 0 30px rgba(0,0,0,.18);
+      transform: translateX(100%);
+      transition: transform .25s ease;
+      z-index: 70;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 18px;
+    }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+    .drawer a, .drawer button.linkish {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      text-align: left;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 60;
+    }
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hero {
+      width: min(1150px, 92vw);
+      margin: 26px auto 18px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card {
+      padding: 22px;
+      text-align: center;
+    }
+    .profile-photo {
+      width: 170px;
+      aspect-ratio: 1;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--surface-2);
+      box-shadow: var(--shadow);
+      background: var(--surface-2);
+      cursor: pointer;
+    }
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 10px 0 0;
+      text-align: left;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 12px 18px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      border: none;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .hero-main {
+      padding: 28px;
+      background: linear-gradient(145deg, var(--surface), var(--surface-2));
+    }
+    .hero-kicker {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      font-size: .9rem;
+    }
+    .hero-main h1 {
+      margin: 10px 0 12px;
+      font-size: clamp(1.9rem, 3vw, 3.2rem);
+      line-height: 1.1;
+    }
+    .hero-main p {
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.8;
+      max-width: 800px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .chip {
+      padding: 10px 14px;
+      font-weight: 700;
+    }
+
+    main {
+      width: min(1150px, 92vw);
+      margin: 0 auto 28px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .section { padding: 24px; }
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+
+    .bio-box, .info-box, .language-box, .summary-box {
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+    .bio-box p, .summary-box p { line-height: 1.8; color: var(--muted); margin: 0; }
+    .info-list, .language-list, .timeline { margin: 0; padding: 0; list-style: none; }
+    .info-list li, .language-list li { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .info-list li:last-child, .language-list li:last-child { border-bottom: none; }
+    .label { font-weight: 700; display: block; margin-bottom: 4px; }
+    .muted { color: var(--muted); }
+
+    .timeline li {
+      padding: 15px 16px;
+      margin-bottom: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+    .timeline li:hover { transform: translateY(-2px); }
+    .year {
+      color: var(--primary);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .activities-stack {
+      display: grid;
+      gap: 18px;
+    }
+    .activity-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .activity-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      background: var(--surface-2);
+    }
+    .activity-track::-webkit-scrollbar { height: 8px; }
+    .activity-track::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+    .activity-slide {
+      min-width: 100%;
+      height: 320px;
+      scroll-snap-align: start;
+      cursor: pointer;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+    .activity-desc {
+      padding: 18px;
+    }
+    .activity-desc h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+    .activity-desc p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .swipe-tip {
+      margin-top: 12px;
+      font-size: .95rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 16px;
+    }
+    .stat {
+      padding: 18px;
+      text-align: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+    .stat span { color: var(--muted); }
+
+    .contact-page {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 80;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .28s ease;
+    }
+    .contact-page.show { transform: translateX(0); }
+    .contact-wrap {
+      width: min(980px, 92vw);
+      margin: 0 auto;
+      padding: 18px 0 40px;
+    }
+    .back-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .back-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 11px 14px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+    }
+    .contact-option {
+      padding: 22px;
+      border-radius: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .contact-option h3 { margin-top: 0; }
+    .contact-option p { color: var(--muted); line-height: 1.7; }
+    .contact-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      font-weight: 700;
+    }
+
+    .viewer {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,.55);
+      z-index: 100;
+    }
+    .viewer.show { display: grid; }
+    .viewer-box {
+      width: min(50vw, 780px);
+      max-width: 95vw;
+      background: transparent;
+      position: relative;
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+    }
+    .viewer-image {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 22px;
+      background: #000;
+      border: 1px solid rgba(255,255,255,.15);
+      -webkit-user-drag: none;
+      user-select: none;
+      pointer-events: none;
+    }
+    .close-btn {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: white;
+      color: #111;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .detail-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0,0,0,.45);
+      z-index: 101;
+    }
+    .detail-modal.show { display: grid; }
+    .detail-box {
+      width: min(760px, 100%);
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      position: relative;
+    }
+    .detail-box h3 { margin-top: 0; }
+    .detail-box p { line-height: 1.8; color: var(--muted); }
+
+    footer {
+      background: var(--footer);
+      color: #d8e4f8;
+      padding: 26px 18px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    footer p { margin: 6px 0; }
+
+    @media (max-width: 980px) {
+      .hero, .grid-2, .contact-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .viewer-box { width: min(72vw, 780px); }
+    }
+
+    @media (max-width: 620px) {
+      .topbar { padding: 12px; }
+      .toolbar { gap: 6px; }
+      .hero-main, .profile-card, .section { padding: 18px; }
+      .stats { grid-template-columns: 1fr; }
+      .brand span { display: none; }
+      .hero { margin-top: 18px; }
+      .profile-photo { width: 130px; }
+      .hero-main h1 { font-size: 2rem; }
+      .contact-btn { width: 100%; }
+      .activity-slide { height: 240px; }
+      .viewer-box { width: 92vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" id="overlay"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-badge">MF</div>
+      <span data-i18n="brand">Portfólio Pessoal</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="icon-btn" id="themeToggle" aria-label="Alternar tema">🌙</button>
+      <div class="lang-wrap" aria-label="idioma">
+        <span>🌐</span>
+        <select id="languageSelect" class="lang-select" aria-label="Idioma">
+          <option value="pt">PT</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+      <button class="icon-btn" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <span data-i18n="menuTitle">Menu</span>
+      <button class="icon-btn" id="closeDrawer" aria-label="Fechar">✕</button>
+    </div>
+    <a href="#inicio" data-close-drawer data-i18n="menuHome">Início</a>
+    <a href="#sobre" data-close-drawer data-i18n="menuAbout">Sobre</a>
+    <button class="linkish" id="openContactPage" data-i18n="menuContact">Contactar</button>
+  </aside>
+
+  <section class="hero" id="inicio">
+    <article class="profile-card card">
+      <img class="profile-photo previewable" src="https://via.placeholder.com/700x700.png?text=Sua+Foto+de+Perfil" alt="Foto de perfil" id="profileImage" />
+      <h2>Mussagi Fernando Omuge</h2>
+      <p class="subtitle" data-i18n="profileBio">
+        Nasci no dia 18 de Junho de 2008, em Pemba, Província de Cabo Delgado. Sou filho de Fernando Omuge e Arminda de Fátima Arcanjo. Sou um jovem dedicado ao desenvolvimento comunitário, promoção dos direitos da criança e dos adolescentes, participação juvenil e actividades de sensibilização social.
+      </p>
+      <button class="contact-btn" id="whatsappBtn" data-i18n="contactBtn">Contactar</button>
+    </article>
+
+    <article class="hero-main card">
+      <span class="hero-kicker" data-i18n="kicker">Portfólio Comunitário</span>
+      <h1 data-i18n="heroTitle">Experiências, projectos e impacto social</h1>
+      <p data-i18n="heroText">
+        Neste espaço partilho um pouco do meu percurso, das actividades em que participei, dos projectos que desenvolvi e do meu compromisso com a mobilização social, educação comunitária e promoção dos direitos dos adolescentes e jovens.
+      </p>
+      <div class="chips">
+        <span class="chip" data-i18n="chip1">Palestras e debates</span>
+        <span class="chip" data-i18n="chip2">Participação juvenil</span>
+        <span class="chip" data-i18n="chip3">Mobilização social</span>
+        <span class="chip" data-i18n="chip4">Projectos comunitários</span>
+      </div>
+    </article>
+  </section>
+
+  <main>
+    <section class="section card" id="sobre">
+      <h2 data-i18n="aboutTitle">Sobre mim</h2>
+      <p class="section-intro" data-i18n="aboutIntro">
+        Aqui estão os meus principais dados, a minha biografia, formação, experiências e disponibilidade para oportunidades de formação e emprego.
+      </p>
+
+      <div class="grid-2">
+        <div class="bio-box">
+          <h3 data-i18n="bioTitle">Biografia</h3>
+          <p data-i18n="bioText">
+            Sou Mussagi Fernando Omuge, natural de Pemba. Nasci no dia 18 de Junho de 2008, na Província de Cabo Delgado, filho de Fernando Omuge e Arminda de Fátima Arcanjo. Concluí a 10ª classe em 2023 e a 12ª classe em 2025 na Escola Secundária de Pemba. Ao longo dos últimos anos, participei em várias iniciativas ligadas à defesa dos direitos da criança e dos adolescentes, debates comunitários, palestras, projectos sociais e actividades de mobilização comunitária. Também participei em programas de formação que fortaleceram as minhas competências em comunicação, liderança, organização e trabalho em equipa. Estou disponível para oportunidades de formação e emprego, especialmente em áreas comunitárias, educativas e sociais.
+          </p>
+        </div>
+
+        <div class="summary-box">
+          <h3 data-i18n="highlightsTitle">Destaques</h3>
+          <ul class="info-list">
+            <li>
+              <span class="label" data-i18n="educationLabel">Formação académica</span>
+              <span class="muted" data-i18n="educationValue">10ª classe concluída em 2023 e 12ª classe concluída em 2025, na Escola Secundária de Pemba.</span>
+            </li>
+            <li>
+              <span class="label" data-i18n="availabilityLabel">Disponibilidade</span>
+              <span class="muted" data-i18n="availabilityValue">Disponível para oportunidades de formação, voluntariado e emprego.</span>
+            </li>
+            <li>
+              <span class="label" data-i18n="projectsLabel">Projectos e vivências</span>
+              <span class="muted" data-i18n="projectsValue">Participação em projectos comunitários, palestras, jornadas de limpeza, seminários, workshops e iniciativas de mobilização social.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2 data-i18n="journeyTitle">Percurso e experiências</h2>
+      <p class="section-intro" data-i18n="journeyIntro">
+        Clica em cada bloco para ver a descrição completa das experiências, actividades e significado de cada percurso.
+      </p>
+      <ul class="timeline">
+        <li class="journey-item" data-title-pt="Parlamento Infantil" data-title-en="Children's Parliament" data-desc-pt="No Parlamento Infantil participei activamente em acções de defesa dos direitos da criança, encontros formativos, debates, seminários e palestras comunitárias. Esta experiência ajudou-me a fortalecer a minha voz, aprender a representar preocupações da infância e participar em actividades educativas e de sensibilização social." data-desc-en="In the Children's Parliament I actively participated in actions defending children's rights, training meetings, debates, seminars and community talks. This experience helped me strengthen my voice, learn to represent childhood concerns and engage in educational and social awareness activities."><span class="year">2022 – 2026</span><span data-i18n="exp1">Membro do Parlamento Infantil, com participação activa na promoção dos direitos da criança, palestras, encontros formativos e acções comunitárias.</span></li>
+        <li class="journey-item" data-title-pt="Plataforma de Participação de Adolescentes e Jovens" data-title-en="Adolescents and Youth Participation Platform" data-desc-pt="Na Plataforma de Participação de Adolescentes e Jovens estive envolvido em debates, campanhas de sensibilização, workshops, jornadas comunitárias e actividades de mobilização social. Esta experiência permitiu-me contribuir para o empoderamento juvenil e para a promoção da participação activa dos adolescentes e jovens." data-desc-en="In the Adolescents and Youth Participation Platform I was involved in debates, awareness campaigns, workshops, community days and social mobilization activities. This experience allowed me to contribute to youth empowerment and the promotion of active adolescent and youth participation."><span class="year">2023 – 2026</span><span data-i18n="exp2">Membro da Plataforma de Participação de Adolescentes e Jovens, com envolvimento em debates, campanhas de sensibilização e actividades juvenis.</span></li>
+        <li class="journey-item" data-title-pt="Clube de Direitos Humanos – Associação Ukhavihera" data-title-en="Human Rights Club – Ukhavihera Association" data-desc-pt="No Clube de Direitos Humanos da Associação Ukhavihera participei em actividades educativas e sociais, seminários, jornadas de limpeza, actividades desportivas e sessões de conscientização sobre direitos humanos. Esta experiência contribuiu para o meu crescimento em liderança, trabalho em equipa e intervenção comunitária." data-desc-en="In the Human Rights Club of Ukhavihera Association I took part in educational and social activities, seminars, clean-up campaigns, sports activities and awareness sessions about human rights. This experience contributed to my growth in leadership, teamwork and community engagement."><span class="year">2023 – 2025</span><span data-i18n="exp3">Membro do Clube de Direitos Humanos da Associação Ukhavihera, com participação em actividades educativas e sociais.</span></li>
+        <li class="journey-item" data-title-pt="Programa Global para a Eliminação das Uniões Prematuras – Associação Kutenga" data-title-en="Global Program for the Elimination of Early Unions – Kutenga Association" data-desc-pt="Como mentor na Associação Kutenga, participei na realização de sessões de mentoria em diferentes bairros, palestras de conscientização e actividades de sensibilização sobre uniões prematuras. Esta experiência fortaleceu a minha capacidade de comunicar com diferentes públicos e apoiar adolescentes e jovens em contextos comunitários." data-desc-en="As a mentor at Kutenga Association, I participated in mentoring sessions in different neighborhoods, awareness talks and sensitization activities about early unions. This experience strengthened my ability to communicate with different audiences and support adolescents and youth in community contexts."><span class="year">2024 – 2026</span><span data-i18n="exp4">Mentor no Programa Global para a Eliminação das Uniões Prematuras, na Associação Kutenga, com facilitação de palestras e sensibilização comunitária.</span></li>
+        <li class="journey-item" data-title-pt="Acelerador Juvenil" data-title-en="Youth Accelerator" data-desc-pt="No Acelerador Juvenil participei em formações ligadas à rádio, jornalismo, comunicação, habilidades para a vida e actividades práticas de participação social. Foi uma experiência que ampliou a minha confiança, criatividade e capacidade de aprender em grupo." data-desc-en="In the Youth Accelerator I participated in training linked to radio, journalism, communication, life skills and practical social participation activities. It was an experience that expanded my confidence, creativity and ability to learn in groups."><span class="year">2025 – 2026</span><span data-i18n="exp5">Participante do programa Acelerador Juvenil, com experiências em rádio, jornalismo, comunicação e habilidades para a vida.</span></li>
+      </ul>
+    </section>
+
+    <section class="section card">
+      <h2 data-i18n="activitiesTitle">Fotos e actividades</h2>
+      <p class="section-intro" data-i18n="activitiesIntro">
+        Nesta parte estão cinco experiências com descrições completas. Em cada bloco podes arrastar as imagens para a direita e para a esquerda para ver outras fotos. Ao clicar na imagem, ela abre em destaque.
+      </p>
+
+      <div class="activities-stack">
+        <article class="activity-row">
+          <div class="activity-track">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Parlamento+Infantil+1" alt="Parlamento Infantil 1">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Parlamento+Infantil+2" alt="Parlamento Infantil 2">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Parlamento+Infantil+3" alt="Parlamento Infantil 3">
+          </div>
+          <div class="activity-desc">
+            <h3 data-i18n="act1Title">Parlamento Infantil</h3>
+            <p data-i18n="act1Desc">Participação em seminários, workshops, encontros formativos, debates e palestras voltadas para a defesa e promoção dos direitos da criança. Também participei em actividades de conscientização comunitária e momentos de representação juvenil.</p>
+            <div class="swipe-tip" data-i18n="swipeTip">Arrasta as fotos para o lado para ver mais imagens.</div>
+          </div>
+        </article>
+
+        <article class="activity-row">
+          <div class="activity-track">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Plataforma+1" alt="Plataforma 1">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Plataforma+2" alt="Plataforma 2">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Plataforma+3" alt="Plataforma 3">
+          </div>
+          <div class="activity-desc">
+            <h3 data-i18n="act2Title">Plataforma de Participação de Adolescentes e Jovens</h3>
+            <p data-i18n="act2Desc">Participação em debates, campanhas de sensibilização, seminários, workshops e actividades comunitárias com foco na promoção dos direitos dos adolescentes e jovens, participação activa e mobilização social.</p>
+            <div class="swipe-tip" data-i18n="swipeTip">Arrasta as fotos para o lado para ver mais imagens.</div>
+          </div>
+        </article>
+
+        <article class="activity-row">
+          <div class="activity-track">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Ukhavihera+1" alt="Ukhavihera 1">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Ukhavihera+2" alt="Ukhavihera 2">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Ukhavihera+3" alt="Ukhavihera 3">
+          </div>
+          <div class="activity-desc">
+            <h3 data-i18n="act3Title">Clube de Direitos Humanos – Associação Ukhavihera</h3>
+            <p data-i18n="act3Desc">Participação em actividades educativas e sociais, jornadas de limpeza, actividades desportivas, seminários e palestras de conscientização sobre direitos humanos, cidadania e convivência comunitária.</p>
+            <div class="swipe-tip" data-i18n="swipeTip">Arrasta as fotos para o lado para ver mais imagens.</div>
+          </div>
+        </article>
+
+        <article class="activity-row">
+          <div class="activity-track">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Kutenga+1" alt="Kutenga 1">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Kutenga+2" alt="Kutenga 2">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Kutenga+3" alt="Kutenga 3">
+          </div>
+          <div class="activity-desc">
+            <h3 data-i18n="act4Title">Mentoria na Associação Kutenga</h3>
+            <p data-i18n="act4Desc">Realização de sessões de mentoria em diferentes bairros sobre uniões prematuras, palestras de conscientização, diálogo comunitário e actividades de apoio a adolescentes e jovens em contextos vulneráveis.</p>
+            <div class="swipe-tip" data-i18n="swipeTip">Arrasta as fotos para o lado para ver mais imagens.</div>
+          </div>
+        </article>
+
+        <article class="activity-row">
+          <div class="activity-track">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Acelerador+1" alt="Acelerador 1">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Acelerador+2" alt="Acelerador 2">
+            <img class="activity-slide previewable" src="https://via.placeholder.com/1200x800.png?text=Acelerador+3" alt="Acelerador 3">
+          </div>
+          <div class="activity-desc">
+            <h3 data-i18n="act5Title">Acelerador Juvenil</h3>
+            <p data-i18n="act5Desc">Participação em formações sobre rádio, jornalismo, comunicação e habilidades para a vida, além de actividades práticas, momentos de aprendizagem em grupo e desenvolvimento de iniciativas com impacto comunitário.</p>
+            <div class="swipe-tip" data-i18n="swipeTip">Arrasta as fotos para o lado para ver mais imagens.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2 data-i18n="skillsTitle">Competências e línguas faladas</h2>
+      <div class="grid-2">
+        <div class="info-box">
+          <h3 data-i18n="skillsBoxTitle">Competências</h3>
+          <ul class="info-list">
+            <li data-i18n="skill1">Trabalho em equipa</li>
+            <li data-i18n="skill2">Boa comunicação interpessoal</li>
+            <li data-i18n="skill3">Capacidade de falar em público</li>
+            <li data-i18n="skill4">Mobilização social e comunitária</li>
+            <li data-i18n="skill5">Liderança juvenil e organização</li>
+          </ul>
+        </div>
+
+        <div class="language-box">
+          <h3 data-i18n="languagesTitle">Línguas faladas</h3>
+          <ul class="language-list">
+            <li><span class="label">Português</span><span class="muted" data-i18n="langPt">Escrita: Bom | Fala: Bom | Leitura: Bom</span></li>
+            <li><span class="label">Inglês</span><span class="muted" data-i18n="langEn">Escrita: Bom | Fala: Razoável | Leitura: Bom</span></li>
+            <li><span class="label">Emakua</span><span class="muted" data-i18n="langEm">Escrita: Razoável | Fala: Bom | Leitura: Razoável</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2 data-i18n="impactTitle">Resumo do meu impacto</h2>
+      <div class="stats">
+        <div class="stat"><strong>5+</strong><span data-i18n="stat1">Experiências marcantes</span></div>
+        <div class="stat"><strong>4+</strong><span data-i18n="stat2">Áreas de intervenção</span></div>
+        <div class="stat"><strong>2022</strong><span data-i18n="stat3">Início do percurso</span></div>
+        <div class="stat"><strong>100%</strong><span data-i18n="stat4">Compromisso comunitário</span></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="contact-page" id="contactPage">
+    <div class="contact-wrap">
+      <div class="back-row">
+        <button class="back-btn" id="backFromContact">← <span data-i18n="backText">Voltar</span></button>
+      </div>
+
+      <div class="section card">
+        <h2 data-i18n="contactTitle">Contactar</h2>
+        <p class="section-intro" data-i18n="contactIntro">
+          Se quiseres falar comigo, aqui tens diferentes formas de contacto. Escolhe a que preferires.
+        </p>
+
+        <div class="contact-grid">
+          <article class="contact-option">
+            <h3>WhatsApp</h3>
+            <p data-i18n="contactWhats">Podes falar comigo pelo WhatsApp. Ao clicar no botão, será aberta uma mensagem pronta para iniciar a conversa.</p>
+            <a class="contact-link" id="waDirect" target="_blank" rel="noopener" data-i18n="sendMessage">Enviar mensagem</a>
+          </article>
+
+          <article class="contact-option">
+            <h3 data-i18n="callTitle">Telemóvel</h3>
+            <p data-i18n="contactCall">Se preferires, também podes ligar directamente para o meu número.</p>
+            <a class="contact-link" href="tel:+258861470922" data-i18n="callNow">Ligar agora</a>
+          </article>
+
+          <article class="contact-option">
+            <h3>Email</h3>
+            <p data-i18n="contactEmail">Também podes entrar em contacto comigo pelo email.</p>
+            <a class="contact-link" href="mailto:mussagifernandoomuge2@gmail.com?subject=Contacto%20a%20partir%20do%20portf%C3%B3lio" data-i18n="sendEmail">Enviar email</a>
+          </article>
+
+          <article class="contact-option">
+            <h3>Facebook</h3>
+            <p data-i18n="contactFacebook">Podes pesquisar pelo meu nome no Facebook para entrares em contacto comigo.</p>
+            <a class="contact-link" href="https://www.facebook.com/search/top?q=Mussagi%20Fernando%20Omuge" target="_blank" rel="noopener" data-i18n="searchFacebook">Pesquisar no Facebook</a>
+          </article>
+
+          <article class="contact-option">
+            <h3>Instagram</h3>
+            <p data-i18n="contactInstagram">Também me podes procurar no Instagram. Podes substituir este link pelo teu perfil quando quiseres.</p>
+            <a class="contact-link" href="https://www.instagram.com/" target="_blank" rel="noopener" data-i18n="openInstagram">Abrir Instagram</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="viewer" id="imageViewer">
+    <div class="viewer-box">
+      <button class="close-btn" id="closeViewer">✕</button>
+      <img id="viewerImage" class="viewer-image" src="" alt="Imagem em destaque">
+    </div>
+  </div>
+
+  <div class="detail-modal" id="detailModal">
+    <div class="detail-box">
+      <button class="close-btn" id="closeDetail">✕</button>
+      <h3 id="detailTitle"></h3>
+      <p id="detailText"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>Mussagi Fernando Omuge</strong></p>
+    <p data-i18n="footerText">Portfólio pessoal com foco em participação juvenil, mobilização social e desenvolvimento comunitário.</p>
+    <p>© 2026</p>
+  </footer>
+
+  <script>
+    const translations = {
+      pt: {
+        brand: 'Portfólio Pessoal',
+        menuTitle: 'Menu',
+        menuHome: 'Início',
+        menuAbout: 'Sobre',
+        menuContact: 'Contactar',
+        profileBio: 'Nasci no dia 18 de Junho de 2008, em Pemba, Província de Cabo Delgado. Sou filho de Fernando Omuge e Arminda de Fátima Arcanjo. Sou um jovem dedicado ao desenvolvimento comunitário, promoção dos direitos da criança e dos adolescentes, participação juvenil e actividades de sensibilização social.',
+        contactBtn: 'Contactar',
+        kicker: 'Portfólio Comunitário',
+        heroTitle: 'Experiências, projectos e impacto social',
+        heroText: 'Neste espaço partilho um pouco do meu percurso, das actividades em que participei, dos projectos que desenvolvi e do meu compromisso com a mobilização social, educação comunitária e promoção dos direitos dos adolescentes e jovens.',
+        chip1: 'Palestras e debates', chip2: 'Participação juvenil', chip3: 'Mobilização social', chip4: 'Projectos comunitários',
+        aboutTitle: 'Sobre mim',
+        aboutIntro: 'Aqui estão os meus principais dados, a minha biografia, formação, experiências e disponibilidade para oportunidades de formação e emprego.',
+        bioTitle: 'Biografia',
+        bioText: 'Sou Mussagi Fernando Omuge, natural de Pemba. Nasci no dia 18 de Junho de 2008, na Província de Cabo Delgado, filho de Fernando Omuge e Arminda de Fátima Arcanjo. Concluí a 10ª classe em 2023 e a 12ª classe em 2025 na Escola Secundária de Pemba. Ao longo dos últimos anos, participei em várias iniciativas ligadas à defesa dos direitos da criança e dos adolescentes, debates comunitários, palestras, projectos sociais e actividades de mobilização comunitária. Também participei em programas de formação que fortaleceram as minhas competências em comunicação, liderança, organização e trabalho em equipa. Estou disponível para oportunidades de formação e emprego, especialmente em áreas comunitárias, educativas e sociais.',
+        highlightsTitle: 'Destaques',
+        educationLabel: 'Formação académica',
+        educationValue: '10ª classe concluída em 2023 e 12ª classe concluída em 2025, na Escola Secundária de Pemba.',
+        availabilityLabel: 'Disponibilidade',
+        availabilityValue: 'Disponível para oportunidades de formação, voluntariado e emprego.',
+        projectsLabel: 'Projectos e vivências',
+        projectsValue: 'Participação em projectos comunitários, palestras, jornadas de limpeza, seminários, workshops e iniciativas de mobilização social.',
+        journeyTitle: 'Percurso e experiências',
+        journeyIntro: 'Clica em cada bloco para ver a descrição completa das experiências, actividades e significado de cada percurso.',
+        exp1: 'Membro do Parlamento Infantil, com participação activa na promoção dos direitos da criança, palestras, encontros formativos e acções comunitárias.',
+        exp2: 'Membro da Plataforma de Participação de Adolescentes e Jovens, com envolvimento em debates, campanhas de sensibilização e actividades juvenis.',
+        exp3: 'Membro do Clube de Direitos Humanos da Associação Ukhavihera, com participação em actividades educativas e sociais.',
+        exp4: 'Mentor no Programa Global para a Eliminação das Uniões Prematuras, na Associação Kutenga, com facilitação de palestras e sensibilização comunitária.',
+        exp5: 'Participante do programa Acelerador Juvenil, com experiências em rádio, jornalismo, comunicação e habilidades para a vida.',
+        activitiesTitle: 'Fotos e actividades',
+        activitiesIntro: 'Nesta parte estão cinco experiências com descrições completas. Em cada bloco podes arrastar as imagens para a direita e para a esquerda para ver outras fotos. Ao clicar na imagem, ela abre em destaque.',
+        swipeTip: 'Arrasta as fotos para o lado para ver mais imagens.',
+        act1Title: 'Parlamento Infantil',
+        act1Desc: 'Participação em seminários, workshops, encontros formativos, debates e palestras voltadas para a defesa e promoção dos direitos da criança. Também participei em actividades de conscientização comunitária e momentos de representação juvenil.',
+        act2Title: 'Plataforma de Participação de Adolescentes e Jovens',
+        act2Desc: 'Participação em debates, campanhas de sensibilização, seminários, workshops e actividades comunitárias com foco na promoção dos direitos dos adolescentes e jovens, participação activa e mobilização social.',
+        act3Title: 'Clube de Direitos Humanos – Associação Ukhavihera',
+        act3Desc: 'Participação em actividades educativas e sociais, jornadas de limpeza, actividades desportivas, seminários e palestras de conscientização sobre direitos humanos, cidadania e convivência comunitária.',
+        act4Title: 'Mentoria na Associação Kutenga',
+        act4Desc: 'Realização de sessões de mentoria em diferentes bairros sobre uniões prematuras, palestras de conscientização, diálogo comunitário e actividades de apoio a adolescentes e jovens em contextos vulneráveis.',
+        act5Title: 'Acelerador Juvenil',
+        act5Desc: 'Participação em formações sobre rádio, jornalismo, comunicação e habilidades para a vida, além de actividades práticas, momentos de aprendizagem em grupo e desenvolvimento de iniciativas com impacto comunitário.',
+        skillsTitle: 'Competências e línguas faladas',
+        skillsBoxTitle: 'Competências',
+        skill1: 'Trabalho em equipa', skill2: 'Boa comunicação interpessoal', skill3: 'Capacidade de falar em público', skill4: 'Mobilização social e comunitária', skill5: 'Liderança juvenil e organização',
+        languagesTitle: 'Línguas faladas',
+        langPt: 'Escrita: Bom | Fala: Bom | Leitura: Bom',
+        langEn: 'Escrita: Bom | Fala: Razoável | Leitura: Bom',
+        langEm: 'Escrita: Razoável | Fala: Bom | Leitura: Razoável',
+        impactTitle: 'Resumo do meu impacto',
+        stat1: 'Experiências marcantes', stat2: 'Áreas de intervenção', stat3: 'Início do percurso', stat4: 'Compromisso comunitário',
+        contactTitle: 'Contactar',
+        contactIntro: 'Se quiseres falar comigo, aqui tens diferentes formas de contacto. Escolhe a que preferires.',
+        backText: 'Voltar',
+        contactWhats: 'Podes falar comigo pelo WhatsApp. Ao clicar no botão, será aberta uma mensagem pronta para iniciar a conversa.',
+        sendMessage: 'Enviar mensagem',
+        callTitle: 'Telemóvel',
+        contactCall: 'Se preferires, também podes ligar directamente para o meu número.',
+        callNow: 'Ligar agora',
+        contactEmail: 'Também podes entrar em contacto comigo pelo email.',
+        sendEmail: 'Enviar email',
+        contactFacebook: 'Podes pesquisar pelo meu nome no Facebook para entrares em contacto comigo.',
+        searchFacebook: 'Pesquisar no Facebook',
+        contactInstagram: 'Também me podes procurar no Instagram. Podes substituir este link pelo teu perfil quando quiseres.',
+        openInstagram: 'Abrir Instagram',
+        footerText: 'Portfólio pessoal com foco em participação juvenil, mobilização social e desenvolvimento comunitário.'
+      },
+      en: {
+        brand: 'Personal Portfolio',
+        menuTitle: 'Menu',
+        menuHome: 'Home',
+        menuAbout: 'About',
+        menuContact: 'Contact',
+        profileBio: 'I was born on June 18, 2008, in Pemba, Cabo Delgado Province. I am the son of Fernando Omuge and Arminda de Fátima Arcanjo. I am a young person dedicated to community development, the promotion of child and adolescent rights, youth participation and social awareness activities.',
+        contactBtn: 'Contact',
+        kicker: 'Community Portfolio',
+        heroTitle: 'Experiences, projects and social impact',
+        heroText: 'This space shares part of my journey, the activities I joined, the projects I developed and my commitment to social mobilization, community education and the promotion of adolescent and youth rights.',
+        chip1: 'Talks and debates', chip2: 'Youth participation', chip3: 'Social mobilization', chip4: 'Community projects',
+        aboutTitle: 'About me',
+        aboutIntro: 'Here are my main details, biography, background, experiences and availability for training and job opportunities.',
+        bioTitle: 'Biography',
+        bioText: 'I am Mussagi Fernando Omuge, from Pemba. I was born on June 18, 2008, in Cabo Delgado Province, son of Fernando Omuge and Arminda de Fátima Arcanjo. I completed grade 10 in 2023 and grade 12 in 2025 at Escola Secundária de Pemba. Over the last years, I have joined several initiatives linked to child and adolescent rights, community debates, talks, social projects and community mobilization. I also participated in training programs that strengthened my skills in communication, leadership, organization and teamwork. I am available for training and employment opportunities, especially in community, educational and social areas.',
+        highlightsTitle: 'Highlights',
+        educationLabel: 'Academic background',
+        educationValue: 'Grade 10 completed in 2023 and grade 12 completed in 2025 at Escola Secundária de Pemba.',
+        availabilityLabel: 'Availability',
+        availabilityValue: 'Available for training opportunities, volunteering and employment.',
+        projectsLabel: 'Projects and experiences',
+        projectsValue: 'Participation in community projects, talks, clean-up campaigns, seminars, workshops and social mobilization initiatives.',
+        journeyTitle: 'Journey and experiences',
+        journeyIntro: 'Click each block to see the full description of the experiences, activities and meaning of each journey.',
+        exp1: 'Member of the Children’s Parliament, actively promoting child rights, talks, training meetings and community actions.',
+        exp2: 'Member of the Adolescent and Youth Participation Platform, involved in debates, awareness campaigns and youth activities.',
+        exp3: 'Member of the Human Rights Club of Associação Ukhavihera, participating in educational and social activities.',
+        exp4: 'Mentor in the Global Program for the Elimination of Early Unions at Associação Kutenga, facilitating talks and community awareness.',
+        exp5: 'Participant in the Youth Accelerator program, with experiences in radio, journalism, communication and life skills.',
+        activitiesTitle: 'Photos and activities',
+        activitiesIntro: 'This section contains five experiences with full descriptions. In each block you can drag the images left and right to see other photos. When you click an image, it opens in focus.',
+        swipeTip: 'Drag the photos sideways to see more images.',
+        act1Title: 'Children’s Parliament',
+        act1Desc: 'Participation in seminars, workshops, training meetings, debates and talks focused on defending and promoting children’s rights. I also took part in community awareness activities and youth representation moments.',
+        act2Title: 'Adolescents and Youth Participation Platform',
+        act2Desc: 'Participation in debates, awareness campaigns, seminars, workshops and community activities focused on promoting the rights of adolescents and youth, active participation and social mobilization.',
+        act3Title: 'Human Rights Club – Ukhavihera Association',
+        act3Desc: 'Participation in educational and social activities, clean-up campaigns, sports activities, seminars and awareness talks on human rights, citizenship and community coexistence.',
+        act4Title: 'Mentorship at Kutenga Association',
+        act4Desc: 'Carrying out mentoring sessions in different neighborhoods on early unions, awareness talks, community dialogue and support activities for adolescents and youth in vulnerable contexts.',
+        act5Title: 'Youth Accelerator',
+        act5Desc: 'Participation in training on radio, journalism, communication and life skills, as well as practical activities, group learning moments and the development of initiatives with community impact.',
+        skillsTitle: 'Skills and spoken languages',
+        skillsBoxTitle: 'Skills',
+        skill1: 'Teamwork', skill2: 'Good interpersonal communication', skill3: 'Public speaking ability', skill4: 'Social and community mobilization', skill5: 'Youth leadership and organization',
+        languagesTitle: 'Spoken languages',
+        langPt: 'Writing: Good | Speaking: Good | Reading: Good',
+        langEn: 'Writing: Good | Speaking: Fair | Reading: Good',
+        langEm: 'Writing: Fair | Speaking: Good | Reading: Fair',
+        impactTitle: 'Summary of my impact',
+        stat1: 'Remarkable experiences', stat2: 'Intervention areas', stat3: 'Start of journey', stat4: 'Community commitment',
+        contactTitle: 'Contact',
+        contactIntro: 'If you want to talk to me, here are different contact options. Choose the one you prefer.',
+        backText: 'Back',
+        contactWhats: 'You can talk to me on WhatsApp. By clicking the button, a ready message will open to start the conversation.',
+        sendMessage: 'Send message',
+        callTitle: 'Phone',
+        contactCall: 'If you prefer, you can call me directly.',
+        callNow: 'Call now',
+        contactEmail: 'You can also contact me by email.',
+        sendEmail: 'Send email',
+        contactFacebook: 'You can search for my name on Facebook to contact me.',
+        searchFacebook: 'Search on Facebook',
+        contactInstagram: 'You can also find me on Instagram. You can replace this link with your profile whenever you want.',
+        openInstagram: 'Open Instagram',
+        footerText: 'Personal portfolio focused on youth participation, social mobilization and community development.'
+      }
+    };
+
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const languageSelect = document.getElementById('languageSelect');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+    const menuToggle = document.getElementById('menuToggle');
+    const closeDrawer = document.getElementById('closeDrawer');
+    const openContactPage = document.getElementById('openContactPage');
+    const contactPage = document.getElementById('contactPage');
+    const backFromContact = document.getElementById('backFromContact');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const waDirect = document.getElementById('waDirect');
+    const imageViewer = document.getElementById('imageViewer');
+    const viewerImage = document.getElementById('viewerImage');
+    const closeViewer = document.getElementById('closeViewer');
+    const detailModal = document.getElementById('detailModal');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailText = document.getElementById('detailText');
+    const closeDetail = document.getElementById('closeDetail');
+
+    const whatsappMessage = encodeURIComponent('Olá Mussagi, visitei o teu portfólio e gostaria de falar contigo sobre oportunidades, actividades e o teu trabalho comunitário.');
+    const whatsappLink = `https://wa.me/258850470321?text=${whatsappMessage}`;
+    waDirect.href = whatsappLink;
+
+    function setTheme(theme) {
+      body.classList.toggle('dark', theme === 'dark');
+      themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('portfolio-theme', theme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const next = body.classList.contains('dark') ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.pt;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) el.textContent = dict[key];
+      });
+      localStorage.setItem('portfolio-lang', lang);
+    }
+
+    languageSelect.addEventListener('change', e => applyLanguage(e.target.value));
+
+    function openDrawerMenu() {
+      drawer.classList.add('open');
+      overlay.classList.add('show');
+    }
+    function closeDrawerMenu() {
+      drawer.classList.remove('open');
+      overlay.classList.remove('show');
+    }
+
+    menuToggle.addEventListener('click', openDrawerMenu);
+    closeDrawer.addEventListener('click', closeDrawerMenu);
+    overlay.addEventListener('click', () => {
+      closeDrawerMenu();
+      closeViewerModal();
+      closeDetailModal();
+    });
+    document.querySelectorAll('[data-close-drawer]').forEach(link => link.addEventListener('click', closeDrawerMenu));
+
+    function openContact() {
+      contactPage.classList.add('show');
+      closeDrawerMenu();
+    }
+    function closeContact() {
+      contactPage.classList.remove('show');
+    }
+
+    openContactPage.addEventListener('click', openContact);
+    whatsappBtn.addEventListener('click', openContact);
+    backFromContact.addEventListener('click', closeContact);
+
+    function openImage(src, alt = '') {
+      viewerImage.src = src;
+      viewerImage.alt = alt;
+      imageViewer.classList.add('show');
+    }
+
+    function closeViewerModal() {
+      imageViewer.classList.remove('show');
+      viewerImage.src = '';
+    }
+
+    document.querySelectorAll('.previewable').forEach(img => {
+      img.addEventListener('click', () => openImage(img.src, img.alt));
+      img.addEventListener('contextmenu', e => e.preventDefault());
+      img.setAttribute('draggable', 'false');
+    });
+
+    closeViewer.addEventListener('click', closeViewerModal);
+    imageViewer.addEventListener('click', e => {
+      if (e.target === imageViewer) closeViewerModal();
+    });
+
+    function openDetail(title, text) {
+      detailTitle.textContent = title;
+      detailText.textContent = text;
+      detailModal.classList.add('show');
+    }
+
+    function closeDetailModal() {
+      detailModal.classList.remove('show');
+    }
+
+    document.querySelectorAll('.journey-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const lang = languageSelect.value;
+        const title = lang === 'en' ? item.dataset.titleEn : item.dataset.titlePt;
+        const text = lang === 'en' ? item.dataset.descEn : item.dataset.descPt;
+        openDetail(title, text);
+      });
+    });
+
+    closeDetail.addEventListener('click', closeDetailModal);
+    detailModal.addEventListener('click', e => {
+      if (e.target === detailModal) closeDetailModal();
+    });
+
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+    const savedLang = localStorage.getItem('portfolio-lang') || 'pt';
+    setTheme(savedTheme);
+    languageSelect.value = savedLang;
+    applyLanguage(savedLang);
+  </script>
+</body>
+</html>
