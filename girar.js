@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2) depois de aparecer o nome, espera 1 segundo e passa o vibranio cinzento
   setTimeout(() => {
     nomeCompleto.classList.add("vibranio");
-  }, 3000);
+  }, 2000);
 
   // 3) entra na página inicial
   setTimeout(() => {
