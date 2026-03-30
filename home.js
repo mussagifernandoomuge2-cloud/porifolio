@@ -118,7 +118,10 @@ document.querySelectorAll(".link-social").forEach((link) => {
   link.addEventListener("click", (evento) => {
     evento.preventDefault();
     const idioma = obterIdiomaAtual();
-    const mensagem = link.getAttribute(`data-popup-${idioma}`) || link.getAttribute("data-popup-pt");
+    const mensagem =
+      link.getAttribute(`data-popup-${idioma}`) ||
+      link.getAttribute("data-popup-pt") ||
+      "Informação indisponível.";
     abrirPopupMensagem(mensagem);
   });
 });
@@ -187,12 +190,10 @@ const traducoes = {
     linguas_titulo: "Línguas faladas",
     portugues_label: "Português:",
     ingles_label: "Inglês:",
-   traducao_label: "Emakua:",
-
-   portugues_valor: "Escrita: Bom | Fala: Bom | Leitura: Bom",
- ingles_valor: "Escrita: Bom | Fala: Razoável | Leitura: Bom",
-   traducao_valor: "Escrita: Razoável | Fala: Bom | Leitura: Razoável",
-     
+    traducao_label: "Emakua:",
+    portugues_valor: "Escrita: Bom | Fala: Bom | Leitura: Bom",
+    ingles_valor: "Escrita: Bom | Fala: Razoável | Leitura: Bom",
+    traducao_valor: "Escrita: Razoável | Fala: Bom | Leitura: Razoável",
     experiencias_titulo: "Experiências, projectos e impacto social",
     experiencias_intro: "Esta secção apresenta de forma mais detalhada as experiências desenvolvidas em organizações, plataformas e actividades comunitárias.",
     exp1_titulo: "Parlamento Infantil",
@@ -286,13 +287,11 @@ const traducoes = {
     comp_10: "Conducting awareness activities",
     linguas_titulo: "Spoken languages",
     portugues_label: "Portuguese:",
-ingles_label: "English:",
-traducao_label: "Emakua:",
-
-portugues_valor: "Writing: Good | Speaking: Good | Reading: Good",
-ingles_valor: "Writing: Good | Speaking: Fair | Reading: Good",
-traducao_valor: "Writing: Fair | Speaking: Good | Reading: Fair",
-    
+    ingles_label: "English:",
+    traducao_label: "Emakua:",
+    portugues_valor: "Writing: Good | Speaking: Good | Reading: Good",
+    ingles_valor: "Writing: Good | Speaking: Fair | Reading: Good",
+    traducao_valor: "Writing: Fair | Speaking: Good | Reading: Fair",
     experiencias_titulo: "Experiences, projects and social impact",
     experiencias_intro: "This section presents in more detail the experiences developed in organizations, platforms and community activities.",
     exp1_titulo: "Children's Parliament",
@@ -346,320 +345,7 @@ traducao_valor: "Writing: Fair | Speaking: Good | Reading: Fair",
     menu_experiencias: "Experiencias",
     menu_fotos: "Fotos y actividades",
     menu_contactar: "Contactar",
-    hero_texto: "Nací el 18 de junio de 2008 en Pemba, provincia de Cabo Delgado, hijo de Fernando Omuge y Arminda de Fátima Arcanjo. Soy una persona dedicada, curiosa y comprometida con el desarrollo comunitario, la participación juvenil y la promoción de los derechos de adolescentes y jóvenes.",
+    hero_texto: "Nací el 18 de junio de 2008 en Pemba, provincia de Cabo Delgado, hijo de Fernando Omuge y Arminda de Fátima Arcanjo. Soy una persona dedicada, curiosa y comprometida con el desarrollo comunitario, la participación juvenil y la promoción de los derechos de los adolescentes y jóvenes.",
     botao_contactar: "Contactar",
     rotulo_hero: "Impacto social y participación juvenil",
-    titulo_hero: "Experiencias, proyectos y contribución comunitaria",
-    texto_hero_destaque: "Este portafolio presenta mi trayectoria académica, comunitaria y social, reuniendo experiencias en charlas, debates, participación juvenil, movilización social, proyectos comunitarios, seminarios, talleres, actividades de mentoría y acciones de sensibilización en diferentes barrios e instituciones.",
-    chip_1: "Charlas y debates",
-    chip_2: "Participación juvenil",
-    chip_3: "Movilización social",
-    chip_4: "Proyectos comunitarios",
-    chip_5: "Seminarios y talleres",
-    chip_6: "Mentoría juvenil",
-    chip_7: "Derechos humanos",
-    chip_8: "Educación comunitaria",
-    sobre_titulo: "Sobre mí",
-    sobre_intro: "Aquí se reúnen información personal, formación, competencias, experiencias, participación social y áreas en las que puedo contribuir.",
-    biografia_titulo: "Biografía",
-    biografia_texto: "Soy Mussagi Fernando Omuge, natural de Pemba. Terminé 10.º grado en 2023 y 12.º grado en 2025 en la Escuela Secundária de Pemba. A lo largo de los años participé en diferentes iniciativas comunitarias y juveniles relacionadas con los derechos de la niñez, sensibilización social, ciudadanía, debates escolares, charlas, jornadas de limpieza, actividades deportivas, talleres y proyectos de mentoría. Tengo interés en tecnología, educación comunitaria, liderazgo juvenil y desarrollo social.",
-    info_titulo: "Información principal",
-    nome_label: "Nombre:",
-    nascimento_label: "Fecha de nacimiento:",
-    nascimento_valor: "18 de junio de 2008",
-    naturalidade_label: "Lugar de nacimiento:",
-    disponibilidade_label: "Disponibilidad:",
-    disponibilidade_valor: "Formación, voluntariado y oportunidades de empleo",
-    telefone_label: "Teléfono:",
-    competencias_titulo: "Competencias e idiomas hablados",
-    competencias_intro: "En esta parte se destacan las competencias adquiridas a lo largo de mi formación y participación en actividades sociales, educativas y comunitarias.",
-    competencias_lista_titulo: "Competencias",
-    comp_1: "Comunicación interpersonal",
-    comp_2: "Participación y liderazgo juvenil",
-    comp_3: "Movilización social y comunitaria",
-    comp_4: "Organización de charlas y debates",
-    comp_5: "Mentoría y acompañamiento juvenil",
-    comp_6: "Trabajo en equipo",
-    comp_7: "Conocimientos básicos de informática",
-    comp_8: "Conocimientos básicos de programación web",
-    comp_9: "Capacidad de adaptación y aprendizaje",
-    comp_10: "Conducción de actividades de sensibilización",
-    linguas_titulo: "Idiomas hablados",
-    portugues_label: "Portugués:",
-ingles_label: "Inglés:",
-traducao_label: "Emakua:",
-
-portugues_valor: "Escritura: Buena | Habla: Buena | Lectura: Buena",
-ingles_valor: "Escritura: Buena | Habla: Regular | Lectura: Buena",
-traducao_valor: "Escritura: Regular | Habla: Buena | Lectura: Regular",
-    experiencias_titulo: "Experiencias, proyectos e impacto social",
-    experiencias_intro: "Esta sección presenta con más detalle las experiencias desarrolladas en organizaciones, plataformas y actividades comunitarias.",
-    exp1_titulo: "Parlamento Infantil",
-    exp1_texto: "Participación activa en debates, encuentros, charlas, seminarios y actividades orientadas a la defensa de los derechos de la niñez. Esta experiencia contribuyó al fortalecimiento de mi capacidad de expresión, escucha, liderazgo y representación juvenil.",
-    exp2_titulo: "Plataforma de Participación de Adolescentes y Jóvenes",
-    exp2_texto: "Participación en campañas de sensibilización, debates juveniles, encuentros comunitarios, acciones de movilización social y promoción de la participación activa de adolescentes y jóvenes. Fue un espacio importante de aprendizaje, intercambio de ideas y construcción de soluciones colectivas.",
-    exp3_titulo: "Club de Derechos Humanos – Asociación Ukhavihera",
-    exp3_texto: "Participación en charlas de concienciación, jornadas de limpieza, actividades deportivas, debates, talleres, seminarios y acciones de ciudadanía. La experiencia me ayudó a fortalecer el espíritu de equipo, el compromiso social y la valoración de los derechos humanos.",
-    exp4_titulo: "Mentoría – Asociación Kutenga",
-    exp4_texto: "Realización de sesiones de mentoría en diferentes barrios sobre uniones prematuras, diálogo comunitario, sensibilización y apoyo a adolescentes y jóvenes. Esta actividad reforzó en mí la responsabilidad social, la escucha activa y la comunicación comunitaria.",
-    exp5_titulo: "Acelerador Juvenil",
-    exp5_texto: "Participación en formaciones relacionadas con radio, comunicación, habilidades para la vida, lógica de programación y programación web. Esta experiencia me ayudó a crecer personalmente, desarrollar nuevas capacidades y creer más en el uso de la tecnología como herramienta de cambio social.",
-    fotos_titulo: "Fotos y actividades",
-    fotos_intro: "Las descripciones permanecen visibles y solo las fotos se abren en una ventana emergente. Cada bloque mantiene un tamaño más equilibrado para no verse demasiado alto en la pantalla.",
-    foto1_titulo: "Parlamento Infantil",
-    foto1_texto: "Participación en seminarios, talleres, debates, encuentros formativos y actividades de sensibilización relacionadas con la defensa de los derechos de la niñez y la participación activa de los jóvenes.",
-    foto2_titulo: "Plataforma de Participación de Adolescentes y Jóvenes",
-    foto2_texto: "Participación en campañas, debates, movilización comunitaria y actividades juveniles destinadas a fortalecer la voz de adolescentes y jóvenes.",
-    foto3_titulo: "Club de Derechos Humanos – Asociación Ukhavihera",
-    foto3_texto: "Participación en jornadas de limpieza, charlas de concienciación, actividades deportivas, talleres y seminarios relacionados con ciudadanía y derechos humanos.",
-    foto4_titulo: "Mentoría en diferentes barrios",
-    foto4_texto: "Sesiones de mentoría sobre uniones prematuras, apoyo a adolescentes y jóvenes, diálogo comunitario y actividades de educación social en varios barrios.",
-    foto5_titulo: "Acelerador Juvenil",
-    foto5_texto: "Participación en actividades de comunicación, radio, programación, creatividad, trabajo en equipo y desarrollo de soluciones con impacto comunitario.",
-    rodape_texto: "Portafolio personal centrado en participación juvenil, movilización social y desarrollo comunitario.",
-    rodape_contacto: "Contacto:",
-    pagina_contactar_titulo: "Contactar",
-    contacto_titulo: "Ponerse en contacto",
-    contacto_intro: "En esta página puedes añadir tus enlaces reales de WhatsApp, Facebook e Instagram. Mientras tanto, al hacer clic en cada botón, aparece un mensaje con la información correspondiente.",
-    whatsapp_desc: "Aquí aparecerá tu enlace directo para conversar por WhatsApp.",
-    abrir_whatsapp: "Abrir WhatsApp",
-    facebook_desc: "Aquí aparecerá el enlace de tu perfil o página de Facebook.",
-    abrir_facebook: "Abrir Facebook",
-    instagram_desc: "Aquí aparecerá tu enlace oficial de Instagram.",
-    abrir_instagram: "Abrir Instagram",
-    email_desc: "Puedes ponerte en contacto directamente por correo electrónico.",
-    enviar_email: "Enviar correo",
-    telefone_titulo: "Teléfono",
-    telefone_desc: "Contacto directo por llamada o mensaje.",
-    ligar_agora: "Llamar ahora",
-    popup_titulo: "Información del enlace"
-  }
-};
-
-function aplicarIdioma(idioma) {
-  const idiomaValido = traducoes[idioma] ? idioma : "pt";
-  document.documentElement.lang = idiomaValido;
-
-  document.querySelectorAll("[data-i18n]").forEach((elemento) => {
-    const chave = elemento.getAttribute("data-i18n");
-    if (traducoes[idiomaValido][chave]) {
-      elemento.textContent = traducoes[idiomaValido][chave];
-    }
-  });
-
-  if (seletorIdioma) {
-    seletorIdioma.value = idiomaValido;
-  }
-
-  localStorage.setItem("idiomaPortfolio", idiomaValido);
-}
-
-if (seletorIdioma) {
-  seletorIdioma.addEventListener("change", (evento) => {
-    aplicarIdioma(evento.target.value);
-  });
-}
-
-const idiomaGuardado = localStorage.getItem("idiomaPortfolio") || "pt";
-aplicarIdioma(idiomaGuardado);
-
-
-/* ===== SINCRONIZAÇÃO DA PÁGINA CONTACTAR COM O HOME.JS ===== */
-document.addEventListener("DOMContentLoaded", () => {
-  const mfoSeletorIdioma =
-    document.getElementById("seletorIdioma") ||
-    document.getElementById("selectorIdioma");
-
-  const mfoBotaoTema = document.getElementById("botaoTema");
-
-  const mfoTraducoes = {
-    pt: {
-      contactar_titulo_pagina: "Contactar",
-      contactar_titulo: "Entrar em contacto",
-      contactar_intro:
-        "Escolhe a plataforma que preferires para interagir directamente comigo.",
-      contacto_whatsapp: "WhatsApp",
-      contacto_whatsapp_texto:
-        "Fala comigo directamente pelo WhatsApp.",
-      botao_abrir_whatsapp: "Abrir WhatsApp",
-      contacto_facebook: "Facebook",
-      contacto_facebook_texto:
-        "Acede ao meu perfil do Facebook e interage comigo.",
-      botao_abrir_facebook: "Abrir Facebook",
-      contacto_instagram: "Instagram",
-      contacto_instagram_texto:
-        "Visita o meu Instagram e acompanha os meus conteúdos.",
-      botao_abrir_instagram: "Abrir Instagram",
-      contacto_email: "Email",
-      contacto_email_texto:
-        "Envia-me uma mensagem directamente por email.",
-      botao_enviar_email: "Enviar email",
-      contacto_telefone: "Telefone",
-      contacto_telefone_texto:
-        "Liga ou envia uma mensagem directamente.",
-      botao_ligar_agora: "Ligar agora",
-      rodape_nome: "Mussagi Fernando Omuge",
-      rodape_descricao:
-        "Portfólio pessoal com foco em participação juvenil, mobilização social e desenvolvimento comunitário.",
-      rodape_contacto:
-        "Contacto: +258 861470922 | Email: mussagifernandoomuge2@gmail.com"
-    },
-
-    en: {
-      contactar_titulo_pagina: "Contact",
-      contactar_titulo: "Get in touch",
-      contactar_intro:
-        "Choose the platform you prefer to interact with me directly.",
-      contacto_whatsapp: "WhatsApp",
-      contacto_whatsapp_texto:
-        "Talk to me directly on WhatsApp.",
-      botao_abrir_whatsapp: "Open WhatsApp",
-      contacto_facebook: "Facebook",
-      contacto_facebook_texto:
-        "Visit my Facebook profile and interact with me.",
-      botao_abrir_facebook: "Open Facebook",
-      contacto_instagram: "Instagram",
-      contacto_instagram_texto:
-        "Visit my Instagram and follow my content.",
-      botao_abrir_instagram: "Open Instagram",
-      contacto_email: "Email",
-      contacto_email_texto:
-        "Send me a message directly by email.",
-      botao_enviar_email: "Send email",
-      contacto_telefone: "Phone",
-      contacto_telefone_texto:
-        "Call or send a message directly.",
-      botao_ligar_agora: "Call now",
-      rodape_nome: "Mussagi Fernando Omuge",
-      rodape_descricao:
-        "Personal portfolio focused on youth participation, social mobilization and community development.",
-      rodape_contacto:
-        "Contact: +258 861470922 | Email: mussagifernandoomuge2@gmail.com"
-    },
-
-    es: {
-      contactar_titulo_pagina: "Contactar",
-      contactar_titulo: "Ponerse en contacto",
-      contactar_intro:
-        "Elige la plataforma que prefieras para interactuar conmigo directamente.",
-      contacto_whatsapp: "WhatsApp",
-      contacto_whatsapp_texto:
-        "Habla conmigo directamente por WhatsApp.",
-      botao_abrir_whatsapp: "Abrir WhatsApp",
-      contacto_facebook: "Facebook",
-      contacto_facebook_texto:
-        "Accede a mi perfil de Facebook e interactúa conmigo.",
-      botao_abrir_facebook: "Abrir Facebook",
-      contacto_instagram: "Instagram",
-      contacto_instagram_texto:
-        "Visita mi Instagram y sigue mi contenido.",
-      botao_abrir_instagram: "Abrir Instagram",
-      contacto_email: "Email",
-      contacto_email_texto:
-        "Envíame un mensaje directamente por correo electrónico.",
-      botao_enviar_email: "Enviar email",
-      contacto_telefone: "Teléfono",
-      contacto_telefone_texto:
-        "Llama o envía un mensaje directamente.",
-      botao_ligar_agora: "Llamar ahora",
-      rodape_nome: "Mussagi Fernando Omuge",
-      rodape_descricao:
-        "Portafolio personal centrado en participación juvenil, movilización social y desarrollo comunitario.",
-      rodape_contacto:
-        
-    }
-  };
-
-  function mfoAplicarIdioma(mfoIdiomaEscolhido) {
-    const mfoIdiomaFinal = mfoTraducoes[mfoIdiomaEscolhido]
-      ? mfoIdiomaEscolhido
-      : "pt";
-
-    document
-      .querySelectorAll("[data-i18n], [data-traducao]")
-      .forEach((mfoElemento) => {
-        const mfoChave =
-          mfoElemento.getAttribute("data-i18n") ||
-          mfoElemento.getAttribute("data-traducao");
-
-        if (mfoChave && mfoTraducoes[mfoIdiomaFinal][mfoChave]) {
-          mfoElemento.textContent = mfoTraducoes[mfoIdiomaFinal][mfoChave];
-        }
-      });
-
-    if (mfoSeletorIdioma) {
-      mfoSeletorIdioma.value = mfoIdiomaFinal;
-    }
-
-    document.documentElement.lang = mfoIdiomaFinal;
-    localStorage.setItem("idiomaPortfolio", mfoIdiomaFinal);
-  }
-
-  function mfoAplicarTema() {
-    const mfoTemaGuardado = localStorage.getItem("temaPortfolio") || "claro";
-
-    if (mfoTemaGuardado === "escuro") {
-      document.body.classList.add("modo-escuro");
-      if (mfoBotaoTema) {
-        mfoBotaoTema.textContent = "☀️";
-      }
-    } else {
-      document.body.classList.remove("modo-escuro");
-      if (mfoBotaoTema) {
-        mfoBotaoTema.textContent = "🌙";
-      }
-    }
-  }
-
-  function mfoAlternarTema() {
-    const mfoNovoTema = document.body.classList.contains("modo-escuro")
-      ? "claro"
-      : "escuro";
-
-    localStorage.setItem("temaPortfolio", mfoNovoTema);
-    mfoAplicarTema();
-  }
-
-  function mfoPrepararLinksDiretos() {
-    const mfoTodosLinks = document.querySelectorAll(".botao-rede");
-
-    mfoTodosLinks.forEach((mfoLink) => {
-      let mfoHref = (mfoLink.getAttribute("href") || "").trim();
-
-      if (!mfoHref) return;
-
-      if (
-        mfoHref.includes("@") &&
-        !mfoHref.startsWith("mailto:") &&
-        !mfoHref.startsWith("http://") &&
-        !mfoHref.startsWith("https://") &&
-        !mfoHref.startsWith("tel:")
-      ) {
-        mfoHref = `mailto:${mfoHref}`;
-        mfoLink.setAttribute("href", mfoHref);
-      }
-
-      if (
-        mfoHref.startsWith("http://") ||
-        mfoHref.startsWith("https://")
-      ) {
-        mfoLink.setAttribute("target", "_blank");
-        mfoLink.setAttribute("rel", "noopener noreferrer");
-      }
-    });
-  }
-
-  if (mfoSeletorIdioma) {
-    mfoSeletorIdioma.addEventListener("change", (evento) => {
-      mfoAplicarIdioma(evento.target.value);
-    });
-  }
-
-  if (mfoBotaoTema) {
-    mfoBotaoTema.addEventListener("click", mfoAlternarTema);
-  }
-
-  mfoAplicarIdioma(localStorage.getItem("idiomaPortfolio") || "pt");
-  mfoAplicarTema();
-  mfoPrepararLinksDiretos();
-});
+    tit
